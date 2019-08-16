@@ -7,7 +7,12 @@
                  [ring "1.7.1"]
                  [compojure "1.6.1"]
                  [metosin/ring-http-response "0.9.0"]
-                 [ring/ring-defaults "0.3.2"]]
+                 [ring/ring-defaults "0.3.2"]
+                 [selmer "1.12.12"]
+                 [ring-webjars "0.2.0"]
+                 [org.webjars/jquery "3.3.1-1"]
+                 [org.webjars/bootstrap "4.0.0-2"]
+                 [org.webjars/popper.js "1.14.1"]]
   :repl-options {:init-ns soul-talk.core}
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler soul-talk.core/app}
