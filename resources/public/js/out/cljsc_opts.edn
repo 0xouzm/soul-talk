@@ -1,0 +1,1 @@
+{:output-dir "resources/public/js/out", :optimizations :none, :preloads [figwheel.connect], :output-to "resources/public/js/main.js", :source-map-timestamp true, :asset-path "js/out", :external-config #:figwheel{:config {:build-id "dev", :websocket-url "ws://localhost:3449/figwheel-ws"}}, :main soul-talk.core, :pretty-print true}

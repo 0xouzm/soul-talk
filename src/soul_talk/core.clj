@@ -17,6 +17,11 @@
   (parser/render-file "index.html"
                       {:ip (:remote-addr request)}))
 
+(defn login-page [request]
+  "this is login page"
+   (parser/render-file "login.html" {})
+  )
+
 (defn error-page [error-details]
   {:status  (:status error-details)
    :headers {"Content-Type" "text/html; charset=utf-8"}
@@ -25,6 +30,7 @@
 (defroutes
   app-routes
   (GET "/" request home-handle)
+  (GET "/login" request (login-page request))
   (GET "/about" [] (str "这是关于我的页面"))
   (route/not-found error-page))
 
