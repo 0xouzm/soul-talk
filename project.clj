@@ -5,8 +5,10 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring "1.7.1"]
-                 [metosin/ring-http-response "0.9.0"]]
+                 [compojure "1.6.1"]
+                 [metosin/ring-http-response "0.9.0"]
+                 [ring/ring-defaults "0.3.2"]]
   :repl-options {:init-ns soul-talk.core}
-  ;:plugins [[lein-ring "0.12.4"]]
-  ;:ring {:handler soul-talk.core/app}
+  :plugins [[lein-ring "0.12.5"]]
+  :ring {:handler soul-talk.core/app}
   :main soul-talk.core)
