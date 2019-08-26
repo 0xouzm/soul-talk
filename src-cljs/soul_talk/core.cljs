@@ -1,7 +1,8 @@
-(ns soul-talk.core)
+(ns soul-talk.core
+  (:require [soul-talk.login]))
 
 (defn main []
-      (enable-console-print!)
-      (prn "Hello, Clojurescript"))
+  (enable-console-print!)
+  (prn "Hello, Clojurescript"))
 
 (main)

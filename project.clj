@@ -15,6 +15,8 @@
                  [org.webjars/bootstrap "4.0.0-2"]
                  [org.webjars/popper.js "1.14.1"]
                  [org.webjars/font-awesome "5.2.0"]
+                 [domina "1.0.3"]
+                 [reagent "0.8.1"]
                  ]
   :main ^:skip-aot soul-talk.core
   :plugins [[lein-ring "0.12.5"]
