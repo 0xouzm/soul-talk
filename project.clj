@@ -23,7 +23,7 @@
             [lein-cljsbuild "1.1.7" :excludes [[org.clojure/clojure]]]
             [lein-figwheel "0.5.17-SNAPSHOT"]]
   :ring {:handler soul-talk.core/app}
-  :source-paths ["src"]
+  :source-paths ["src/clj" "src/cljc"]
   :repl-options {:init-ns soul-talk.core}
   ;new code
   :clean-targets                                            ;; 清理临时文件
@@ -34,7 +34,7 @@
 
   :cljsbuild
   {:builds {:dev                                            ;; 开发配置
-            {:source-paths ["src-cljs"]                     ;; 源代码目录
+            {:source-paths ["src/cljs" "src/cljc"]                     ;; 源代码目录
              :figwheel     true                             ;; 开启 figwheel
              :compiler     {:main                 soul-talk.core ;; 主命名空间
                             :asset-path           "js/out"  ;; 加载文件的地方 和 临时目录相关

@@ -9,4 +9,4 @@ return cljs.core.prn.call(null,"Hello, Clojurescript");
 });
 soul_talk.core.main.call(null);
 
-//# sourceMappingURL=core.js.map?rel=1566810247927
+//# sourceMappingURL=core.js.map?rel=1566884698858

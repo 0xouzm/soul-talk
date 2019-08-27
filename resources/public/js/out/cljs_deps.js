@@ -44,5 +44,6 @@ goog.addDependency("../reagent/core.js", ['reagent.core'], ['reagent.impl.util',
 goog.addDependency("../domina/support.js", ['domina.support'], ['goog.dom', 'cljs.core', 'goog.events']);
 goog.addDependency("../domina.js", ['domina'], ['goog.dom.forms', 'goog.dom', 'goog.dom.classes', 'goog.string', 'cljs.core', 'domina.support', 'goog.style', 'clojure.string', 'goog.events', 'goog.dom.xml']);
 goog.addDependency("../domina/events.js", ['domina.events'], ['cljs.core', 'domina', 'goog.object', 'goog.events']);
-goog.addDependency("../soul_talk/login.js", ['soul_talk.login'], ['reagent.core', 'cljs.core', 'domina', 'domina.events']);
+goog.addDependency("../soul_talk/auth_validate.js", ['soul_talk.auth_validate'], ['cljs.core']);
+goog.addDependency("../soul_talk/login.js", ['soul_talk.login'], ['reagent.core', 'cljs.core', 'domina', 'domina.events', 'soul_talk.auth_validate']);
 goog.addDependency("../soul_talk/core.js", ['soul_talk.core'], ['cljs.core', 'soul_talk.login']);
