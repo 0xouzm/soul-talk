@@ -29,7 +29,7 @@
 
 (defn handle-login [email password request]
   (if (and (= email "wujj@gmail.com")
-           (= password "1"))
+           (= password "111111"))
     (home-handle (assoc-in request [:session :identity] email))
     (login-page (assoc request :error "用户名密码不对"))))
 

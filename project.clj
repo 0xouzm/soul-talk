@@ -17,6 +17,8 @@
                  [org.webjars/font-awesome "5.2.0"]
                  [domina "1.0.3"]
                  [reagent "0.8.1"]
+                 [reagent-utils "0.3.1"]
+                 [cljs-ajax "0.7.4"]
                  ]
   :main ^:skip-aot soul-talk.core
   :plugins [[lein-ring "0.12.5"]
@@ -45,5 +47,4 @@
                             :pretty-print         true}}}}  ;; 打印格式
   :figwheel
   {:css-dirs ["resources/public/css"]}
-
   )

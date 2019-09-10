@@ -2,60 +2,83 @@
   (:require [domina :as dom]
             [domina.events :as ev]
             [reagent.core :as reagent :refer [atom]]
-            [soul-talk.auth_validate :refer [validate-email validate-passoword]]))
+            [soul-talk.auth-validate :as validate]
+            [ajax.core :as ajax]))
 
+(def login-data (atom {:email "" :password ""}))
 
+(defn validate-invalid [input vali-fun]
+  (if-not (vali-fun (.-value input))
+    (dom/add-class! input "is-invalid")
+    (dom/remove-class! input "is-invalid")))
 
-(defn validate-invalid [input-id vali-fun]
-  (if-not (vali-fun (dom/value input-id))                   ;;修改
-    (dom/add-class! input-id "is-invalid")
-    (dom/remove-class! input-id "is-invalid")))
+(defn handler-ok [response]
+  (js/alert @login-data))
 
-(defn login-component []
-  [:form#loginForm.form-signin
-   {:action "/login" :method "post"}
-   [:h1.h3.mb-3.font-weight-normal.text-center "Please sign in"]
-   [:div.form-group
-    [:label "Email address"]
-    [:input#email.form-control
-     {:type        "text"
-      :name        "email"
-      :auto-focus  true
-      :placeholder "Email Address"
-      :on-blur     #(validate-invalid (dom/by-id "email") validate-email)}] ;;修改
-    [:div.invalid-feedback "无效的 Email"]]
-   [:div.form-group
-    [:label "Password"]
-    [:input#password.form-control
-     {:type        "password"
-      :name        "password"
-      :placeholder "password"
-      :on-blur     #(validate-invalid (dom/by-id "password") validate-passoword)}] ;;修改
-    [:div.invalid-feedback "无效的密码"]]
-   [:div.form-group.form-check
-    [:input#rememeber.form-check-input {:type "checkbox"}]
-    [:label "记住我"]]
-   [:div#error]
-   [:input#submit.btn.btn-lg.btn-primary.btn-block {:type "submit" :value "登录"}]
-   [:p.mt-5.mb-3.text-muted
-    "&copy @2018"]])
+(defn handler-error [{:keys [status status-text]}]
+  (js/alert (str status status-text)))
 
-(reagent/render
-  [login-component]
-  (dom/by-id "content"))
+(defn login! []
+  (ajax/POST
+    "/login"
+    {:format        :json
+     :headers       {"Accept" "application/transit+json"}
+     :params        @login-data
+     :handler       handler-ok
+     :error-handler handler-error}))
 
 (defn validate-form []
-  (let [email (dom/by-id "email")
-        password (dom/by-id "password")]
-    (if (and (validate-email email)
-             (validate-passoword password))
-      true
-      (do
-        (js/alert "email和密码不能为空")
-        false))))
+  (if (and (validate/validate-email (:email @login-data))
+           (validate/validate-passoword (:password @login-data)))
+    (login!)
+    (do
+      (js/alert "email和密码不合法")
+      false)))
+
+(defn login-component []
+  [:div.container
+   [:form#loginForm.form-signin
+    [:h1.h3.mb-3.font-weight-normal.text-center "Please sign in"]
+    [:div.form-group
+     [:label "Email address"]
+     [:input#email.form-control
+      {:type        "text"
+       :name        "email"
+       :auto-focus  true
+       :placeholder "Email Address"
+       :on-blur   (fn [e]
+                    (let [d (.. e -target)]
+                      (swap! login-data assoc :email (.-value d))
+                      (validate-invalid d validate/validate-email)))}]
+     [:div.invalid-feedback "无效的 Email"]]
+    [:div.form-group
+     [:label "Password"]
+     [:input#password.form-control
+      {:type        "password"
+       :name        "password"
+       :placeholder "password"
+       :on-blur     (fn [e]
+                      (let [d (.-target e)]
+                        (swap! login-data assoc :password (.-value d))
+                        (validate-invalid d validate/validate-passoword)))}]
+     [:div.invalid-feedback "无效的密码"]]
+    [:div.form-group.form-check
+     [:input#rememeber.form-check-input {:type "checkbox"}]
+     [:label "记住我"]]
+    [:div#error.invalid-feedback]
+    [:input#submit.btn.btn-lg.btn-primary.btn-block
+     {:type  "button"
+      :value "登录"
+      :on-click #(validate-form)}]
+    [:p.mt-5.mb-3.text-muted "&copy @2018"]]])
+
+
+(defn load-page []
+  (reagent/render
+    [login-component]
+    (dom/by-id "app")))
 
 (defn ^:export init []
   (if (and js/document
            (.-getElementById js/document))
-    (let [login-form (dom/by-id "loginForm")]
-      (set! (.-onsubmit login-form) validate-form))))
+    (load-page)))
