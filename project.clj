@@ -19,6 +19,7 @@
                  [reagent "0.8.1"]
                  [reagent-utils "0.3.1"]
                  [cljs-ajax "0.7.4"]
+                 [ring-middleware-format "0.7.2"]
                  ]
   :main ^:skip-aot soul-talk.core
   :plugins [[lein-ring "0.12.5"]
