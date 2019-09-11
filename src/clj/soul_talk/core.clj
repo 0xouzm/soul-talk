@@ -12,6 +12,7 @@
     [soul-talk.auth-validate :as auth-validate]
     [ring.util.response :as res]
     [ring.middleware.format :as wrap-format]
+    [soul-talk.routes.auth :refer [auth-routes]]
     ))
 
 
@@ -30,7 +31,7 @@
   )
 
 (defn handle-login [{:keys [params] :as request}]
-  (println request)
+  ;(println request)
   (let [email (:email params)
         password (:password params)]
     (cond
@@ -66,12 +67,12 @@
         (assoc-in [:headers "Pragma"] "no-cache"))))
 
 (def app
-  (-> app-routes
+  (-> (routes auth-routes app-routes)
       (wrap-nocache)
       (wrap-reload)
       (wrap-webjars)
+      (wrap-format/wrap-restful-format :formats [:json-kw])
       (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
-      (wrap-format/wrap-restful-format)
       )
   )
 

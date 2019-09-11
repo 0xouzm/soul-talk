@@ -2,7 +2,8 @@
   (:require [soul-talk.login :as login]
             [reagent.core :as r]
             [reagent.session :as session]
-            [domina :as dom]))
+            [domina :as dom]
+            [soul-talk.register :as register]))
 
 (defonce posts (r/atom []))
 (defonce navs (r/atom []))

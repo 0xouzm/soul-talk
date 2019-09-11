@@ -68,7 +68,7 @@
          [:input#remameber.form-check-input {:type "checkbox"}]
          [:label "记住我"]]
         [:div#error @error]
-        [:input#submit.btn.btn-primary
+        [:input#submit.btn.btn-primary.btn-lg.btn-block
          {:type     :submit
           :value    "登录"
           :on-click #(validate-form login-data)}]

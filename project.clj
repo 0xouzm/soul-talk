@@ -20,6 +20,14 @@
                  [reagent-utils "0.3.1"]
                  [cljs-ajax "0.7.4"]
                  [ring-middleware-format "0.7.2"]
+                 [org.clojure/java.jdbc "0.7.8"]
+                 [org.postgresql/postgresql "42.2.6"]
+                 [ragtime "0.8.0"]
+                 [buddy "2.0.0"]
+                 [clj-time "0.14.4"]
+                 [com.taoensso/timbre "4.10.0"]
+                 ;[com.fzakaria/slf4j-timbre "0.3.12"]
+                 [bouncer "1.0.1"]
                  ]
   :main ^:skip-aot soul-talk.core
   :plugins [[lein-ring "0.12.5"]
@@ -37,7 +45,7 @@
 
   :cljsbuild
   {:builds {:dev                                            ;; 开发配置
-            {:source-paths ["src/cljs" "src/cljc"]                     ;; 源代码目录
+            {:source-paths ["src/cljs" "src/cljc"]          ;; 源代码目录
              :figwheel     true                             ;; 开启 figwheel
              :compiler     {:main                 soul-talk.core ;; 主命名空间
                             :asset-path           "js/out"  ;; 加载文件的地方 和 临时目录相关
@@ -48,4 +56,9 @@
                             :pretty-print         true}}}}  ;; 打印格式
   :figwheel
   {:css-dirs ["resources/public/css"]}
+
+  :profiles {:dev {
+                   :repl-options {:init-ns user}
+                   :source-paths ["env/dev/clj"]
+                   :dependencies [[ring/ring-devel "1.7.1"]]}}
   )
