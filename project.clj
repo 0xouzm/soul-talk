@@ -58,7 +58,7 @@
   {:css-dirs ["resources/public/css"]}
 
   :profiles {:dev {
-                   :repl-options {:init-ns user}
+                   :repl-options {:init-ns soul-talk.routes.auth}
                    :source-paths ["env/dev/clj"]
                    :dependencies [[ring/ring-devel "1.7.1"]]}}
   )

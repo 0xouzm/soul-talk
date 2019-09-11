@@ -13,37 +13,13 @@
     [ring.util.response :as res]
     [ring.middleware.format :as wrap-format]
     [soul-talk.routes.auth :refer [auth-routes]]
+    [ring.middleware.session :refer [wrap-session]]
     ))
 
 
 
 (defn home-handle [request]
   (parser/render-file "index.html" request))
-
-(defn handle-logout [request]
-  (do
-    (assoc request :session {})
-    (redirect "/")))
-
-(defn login-page [request]
-  "this is login page"
-  (parser/render-file "login.html" request)
-  )
-
-(defn handle-login [{:keys [params] :as request}]
-  ;(println request)
-  (let [email (:email params)
-        password (:password params)]
-    (cond
-      (not (auth-validate/validate-email email)) (res/response {:status 400 :errors "Email不合法"})
-      (not (auth-validate/validate-passoword password)) (res/response {:status 400 :errors "密码不合法"})
-      (and (= email "wujj@gmail.com")
-           (= password "12345678"))
-      (do
-        (assoc-in request [:session :identity] email)
-        (res/response {:status :ok}))
-      :else (res/response {:status 400 :errors "用户名密码不对"}))))
-
 
 (defn error-page [error-details]
   {:status  (:status error-details)
@@ -53,9 +29,6 @@
 (defroutes
   app-routes
   (GET "/" request home-handle)
-  (GET "/login" request (login-page request))
-  (POST "/login" req (handle-login req))
-  (GET "/logout" request (handle-logout request))
   (GET "/about" [] (str "这是关于我的页面"))
   (route/not-found error-page))
 
@@ -72,6 +45,7 @@
       (wrap-reload)
       (wrap-webjars)
       (wrap-format/wrap-restful-format :formats [:json-kw])
+      (wrap-session)
       (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
       )
   )

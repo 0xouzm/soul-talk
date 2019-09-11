@@ -76,13 +76,14 @@ goog.addDependency("../ajax/xhrio.js", ['ajax.xhrio'], ['goog.net.XhrManager', '
 goog.addDependency("../ajax/core.js", ['ajax.core'], ['ajax.formats', 'ajax.xml_http_request', 'ajax.transit', 'ajax.json', 'ajax.url', 'ajax.interceptors', 'cljs.core', 'ajax.ring', 'ajax.easy', 'ajax.simple', 'ajax.protocols', 'ajax.util', 'clojure.string', 'ajax.xhrio']);
 goog.addDependency("../domina/support.js", ['domina.support'], ['goog.dom', 'cljs.core', 'goog.events']);
 goog.addDependency("../domina.js", ['domina'], ['goog.dom.forms', 'goog.dom', 'goog.dom.classes', 'goog.string', 'cljs.core', 'domina.support', 'goog.style', 'clojure.string', 'goog.events', 'goog.dom.xml']);
+goog.addDependency("../soul_talk/components/common.js", ['soul_talk.components.common'], ['cljs.core']);
 goog.addDependency("../domina/events.js", ['domina.events'], ['cljs.core', 'domina', 'goog.object', 'goog.events']);
-goog.addDependency("../soul_talk/login.js", ['soul_talk.login'], ['soul_talk.auth_validate', 'ajax.core', 'reagent.core', 'cljs.core', 'domina', 'domina.events']);
 goog.addDependency("../taoensso/truss/impl.js", ['taoensso.truss.impl'], ['cljs.core', 'clojure.set']);
 goog.addDependency("../taoensso/truss.js", ['taoensso.truss'], ['cljs.core', 'taoensso.truss.impl']);
 goog.addDependency("../cljs/test.js", ['cljs.test'], ['cljs.core', 'cljs.pprint', 'clojure.string']);
 goog.addDependency("../taoensso/encore.js", ['taoensso.encore'], ['goog.net.XhrIoPool', 'cljs.tools.reader.edn', 'taoensso.truss', 'goog.net.XhrIo', 'goog.string', 'goog.Uri.QueryData', 'cljs.core', 'cljs.test', 'goog.object', 'goog.string.StringBuffer', 'goog.net.EventType', 'clojure.set', 'goog.structs', 'goog.string.format', 'clojure.string', 'cljs.reader', 'goog.events', 'goog.net.ErrorCode']);
 goog.addDependency("../taoensso/timbre/appenders/core.js", ['taoensso.timbre.appenders.core'], ['cljs.core', 'clojure.string', 'taoensso.encore']);
 goog.addDependency("../taoensso/timbre.js", ['taoensso.timbre'], ['cljs.core', 'taoensso.timbre.appenders.core', 'clojure.string', 'taoensso.encore']);
-goog.addDependency("../soul_talk/register.js", ['soul_talk.register'], ['soul_talk.auth_validate', 'ajax.core', 'reagent.session', 'reagent.core', 'cljs.core', 'domina', 'taoensso.timbre']);
+goog.addDependency("../soul_talk/login.js", ['soul_talk.login'], ['soul_talk.auth_validate', 'ajax.core', 'reagent.core', 'cljs.core', 'domina', 'soul_talk.components.common', 'domina.events', 'taoensso.timbre']);
+goog.addDependency("../soul_talk/register.js", ['soul_talk.register'], ['soul_talk.auth_validate', 'ajax.core', 'reagent.session', 'reagent.core', 'cljs.core', 'domina', 'soul_talk.components.common', 'taoensso.timbre']);
 goog.addDependency("../soul_talk/core.js", ['soul_talk.core'], ['reagent.session', 'reagent.core', 'cljs.core', 'soul_talk.login', 'domina', 'soul_talk.register']);

@@ -7,6 +7,7 @@ goog.require('soul_talk.auth_validate');
 goog.require('ajax.core');
 goog.require('reagent.session');
 goog.require('taoensso.timbre');
+goog.require('soul_talk.components.common');
 soul_talk.register.validate_invalid = (function soul_talk$register$validate_invalid(input,vali_fun){
 if(cljs.core.not.call(null,vali_fun.call(null,input.value))){
 return domina.add_class_BANG_.call(null,input,"is-invalid");
@@ -26,8 +27,8 @@ cljs.core.reset_BANG_.call(null,reg_date,cljs.core.PersistentArrayMap.EMPTY);
 alert("\u6CE8\u518C\u6210\u529F");
 
 return window.location.href = "/login";
-}),new cljs.core.Keyword(null,"error-handler","error-handler",-484945776),(function (p1__33020_SHARP_){
-return cljs.core.reset_BANG_.call(null,errors,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"server-error","server-error",-426815993),cljs.core.get_in.call(null,p1__33020_SHARP_,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"response","response",-1068424192),"message"], null))], null));
+}),new cljs.core.Keyword(null,"error-handler","error-handler",-484945776),(function (p1__32860_SHARP_){
+return cljs.core.reset_BANG_.call(null,errors,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"server-error","server-error",-426815993),cljs.core.get_in.call(null,p1__32860_SHARP_,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"response","response",-1068424192),"message"], null))], null));
 })], null));
 } else {
 var error = cljs.core.vals.call(null,cljs.core.deref.call(null,errors));
@@ -65,7 +66,31 @@ return soul_talk.register.validate_invalid.call(null,d,soul_talk.auth_validate.v
 return (function (){
 return soul_talk.register.register_BANG_.call(null,reg_data,error);
 });})(reg_data,error))
-], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.mt-5.mb-3.text-muted","p.mt-5.mb-3.text-muted",-564629912),"&copy @2018"], null)], null)], null);
+], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.mt-5.mb-3.text-muted","p.mt-5.mb-3.text-muted",-564629912),"\u00A9copy @2018"], null)], null)], null);
+});
+;})(reg_data,error))
+});
+soul_talk.register.register_component = (function soul_talk$register$register_component(){
+var reg_data = reagent.core.atom.call(null,cljs.core.PersistentArrayMap.EMPTY);
+var error = reagent.core.atom.call(null,null);
+return ((function (reg_data,error){
+return (function (){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.container","div.container",72419955),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#loginForm.form-signin","div#loginForm.form-signin",1054339363),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h1.h3.mb-3.font-weight-normal.text-center","h1.h3.mb-3.font-weight-normal.text-center",1756226996),"Soul Talk"], null),new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.well.well-sm","div.well.well-sm",-921823204),"* \u4E3A\u5FC5\u586B"], null),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [soul_talk.components.common.text_input,"Email",new cljs.core.Keyword(null,"email","email",1415816706),"enter a email, EX: example@xx.com",reg_data], null),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [soul_talk.components.common.password_input,"\u5BC6\u7801",new cljs.core.Keyword(null,"password","password",417022471),"\u8F93\u5165\u5BC6\u7801\u6700\u5C118\u4F4D",reg_data], null),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [soul_talk.components.common.password_input,"\u786E\u8BA4\u5BC6\u7801",new cljs.core.Keyword(null,"pass-confirm","pass-confirm",-2050932590),"\u786E\u8BA4\u5BC6\u7801\u548C\u4E0A\u9762\u4E00\u6837",reg_data], null),(function (){var temp__5720__auto__ = new cljs.core.Keyword(null,"server-error","server-error",-426815993).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,error));
+if(cljs.core.truth_(temp__5720__auto__)){
+var error__$1 = temp__5720__auto__;
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.alert.alert-danger","div.alert.alert-danger",-890058301),error__$1], null);
+} else {
+return null;
+}
+})()], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input.btn.btn-primary.btn-block","input.btn.btn-primary.btn-block",2043743636),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"submit","submit",-49315317),new cljs.core.Keyword(null,"value","value",305978217),"\u6CE8\u518C",new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (reg_data,error){
+return (function (){
+return soul_talk.register.register_BANG_.call(null,reg_data,error);
+});})(reg_data,error))
+], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input.btn.btn-primary.btn-block","input.btn.btn-primary.btn-block",2043743636),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"submit","submit",-49315317),new cljs.core.Keyword(null,"value","value",305978217),"\u767B\u5F55",new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (reg_data,error){
+return (function (){
+return window.location.href = "/login";
+});})(reg_data,error))
+], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.mt-5.mb-3.text-muted","p.mt-5.mb-3.text-muted",-564629912),"\u00A9copy @2018"], null)], null)], null);
 });
 ;})(reg_data,error))
 });
@@ -87,4 +112,4 @@ return null;
 });
 goog.exportSymbol('soul_talk.register.init', soul_talk.register.init);
 
-//# sourceMappingURL=register.js.map?rel=1568179834519
+//# sourceMappingURL=register.js.map?rel=1568200141076

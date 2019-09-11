@@ -9,6 +9,12 @@
 (defonce navs (r/atom []))
 (defonce archives (r/atom []))
 
+(defn log-component? [name]
+  (fn []
+    [:div
+     [:span.navbar-text (str "欢迎你 " name)]
+     [:a.btn.btn-sm.btn-outline-secondary {:href "/logout"} "退出"]]))
+
 (defn blog-header-component []
   (fn []
     [:div.blog-header.py-3
@@ -18,10 +24,8 @@
       [:div.col-4.text-center
        [:a.blog-header-logo.text-dark {:href "/"} "Soul Talk"]]
       [:div.col-4.d-flex.justify-content-end.align-items-center
-       (if (session/get :identity)
-         (let [name (session/get :identity)]
-           [:span.navbar-text (str "欢迎你 " name)]
-           [:a.btn.btn-sm.btn-outline-secondary {:href "/logout"} "退出"])
+       (if-not (= js/identity "")
+         [log-component? js/identity]
          [:a.btn.btn-sm.btn-outline-secondary {:href "/login"} "登录"])]]]))
 
 (defn nav-scroller-header-component [navs]
@@ -99,21 +103,21 @@
    [main-component]
    [footer-component]])
 
-(reset! navs [{:href "#"
+(reset! navs [{:href  "#"
                :value "World"}
-              {:href "#"
+              {:href  "#"
                :value "China"}
-              {:href "#"
+              {:href  "#"
                :value "China1"}
-              {:href "#"
+              {:href  "#"
                :value "China2"}])
 
-(reset! posts [{:id "post1"
+(reset! posts [{:id      "post1"
                 :title   "Sample blog post"
                 :meta    "January 1, 2014 by"
                 :author  "soul"
                 :content "asasfasfasffsd"}
-               {:id "post2"
+               {:id      "post2"
                 :title   "Another blog post"
                 :meta    "December 23, 2013 by "
                 :author  "jiesoul"
